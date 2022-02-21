@@ -110,7 +110,7 @@ const Students: NextPage = () => {
 
                 <Box>
                   <FormControl>
-                    <FormLabel htmlFor="whatsapp">What's App</FormLabel>
+                    <FormLabel htmlFor="whatsapp">What&apos;s App</FormLabel>
                     <NumberInput>
                       <NumberInputField id="whatsapp" />
                     </NumberInput>
