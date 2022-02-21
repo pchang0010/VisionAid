@@ -17,6 +17,9 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    
+    env:
+      NEXT_PUBLIC_BASE_PATH: /VisionAid
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -46,6 +49,7 @@ jobs:
           git config --local user.email "bot@users.noreply.github.com"
           git config --local user.name "github-actions[but]"
           git commit -m "Deploy changes from master"
+        
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
