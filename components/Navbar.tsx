@@ -1,8 +1,9 @@
 import React from "react";
+import Image from "next/image";
+import styled from "@emotion/styled";
 import {
   Flex,
   Box,
-  Image,
   Menu,
   MenuButton,
   MenuList,
@@ -10,21 +11,28 @@ import {
   Spacer,
   Button,
 } from "@chakra-ui/react";
-import Link from "next/link";
+import bannerImage from "../public/banner.webp";
+
+const ImageWrapper = styled.div`
+  img {
+    cursor: pointer;
+  }
+`;
 
 export const Navbar = () => {
   return (
     <Flex as="nav" align="center">
       <Box>
-        <Image
-          src="banner.webp"
-          htmlHeight={200}
-          htmlWidth={300}
-          onClick={() => {
-            window.location.href = "/";
-          }}
-          style={{ cursor: "pointer" }}
-        />
+        <ImageWrapper>
+          <Image
+            src={bannerImage}
+            height={60}
+            width={300}
+            onClick={() => {
+              window.location.href = "/";
+            }}
+          />
+        </ImageWrapper>
       </Box>
       <Box>
         <Button
@@ -40,8 +48,20 @@ export const Navbar = () => {
             Students
           </MenuButton>
           <MenuList>
-            <MenuItem>List students</MenuItem>
-            <MenuItem>Add a student</MenuItem>
+            <MenuItem
+              onClick={() => {
+                window.location.href = "/students";
+              }}
+            >
+              List students
+            </MenuItem>
+            <MenuItem
+              onClick={() => {
+                window.location.href = "/students/create";
+              }}
+            >
+              Add a student
+            </MenuItem>
           </MenuList>
         </Menu>
         <Menu autoSelect={false}>
@@ -49,7 +69,13 @@ export const Navbar = () => {
             Courses
           </MenuButton>
           <MenuList>
-            <MenuItem>List courses</MenuItem>
+            <MenuItem
+              onClick={() => {
+                window.location.href = "/courses";
+              }}
+            >
+              List courses
+            </MenuItem>
             <MenuItem>Add a course</MenuItem>
           </MenuList>
         </Menu>
