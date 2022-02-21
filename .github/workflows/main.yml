@@ -22,6 +22,10 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+        with: 
+          persist-credentials: false
+          fetch-depth: 0
+        
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
@@ -33,6 +37,20 @@ jobs:
         
       - name: Rename to docs folder
         run: mv ./out ./docs
+        
+      - name: Add to git repository
+        run: git add .
+        
+      - name: Commit changes
+        run: |
+          git config --local user.email "bot@users.noreply.github.com"
+          git config --local user.name "github-actions[but]"
+          git commit -m "Deploy changes from master"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_tokenL: ${{ secrets.GITHUB_TOKEN }}
+          branch: deploy
         
       - name: Push to deploy branch
         run: git push -uf origin/deploy
