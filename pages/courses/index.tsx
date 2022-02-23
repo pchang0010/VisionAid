@@ -10,16 +10,14 @@ const Root = styled.div`
 
 const Courses: NextPage = () => {
   return (
-    <body>
-      <Root>
-        <Navbar />
-        <Container>
-          <Stack>
-            <Text fontSize="medium">List of courses eventually over here</Text>
-          </Stack>
-        </Container>
-      </Root>
-    </body>
+    <Root>
+      <Navbar />
+      <Container>
+        <Stack>
+          <Text fontSize="medium">List of courses eventually over here</Text>
+        </Stack>
+      </Container>
+    </Root>
   );
 };
 

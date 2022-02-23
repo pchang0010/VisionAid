@@ -10,23 +10,21 @@ const Root = styled.div`
 
 const Home: NextPage = () => {
   return (
-    <body>
-      <Root>
-        <Navbar />
-        <Container>
-          <Stack>
-            <Text fontSize="xx-large">About us</Text>
-            <Text fontSize="medium">
-              Vision-Aid Academy is a nonprofit organization that specializes in
-              helping people with visual impairments through offering courses
-              that are taught with an emphasis on accessibility.
-            </Text>
-            <Image src="banner.png" />
-            <Image src="wheel.png" />
-          </Stack>
-        </Container>
-      </Root>
-    </body>
+    <Root>
+      <Navbar />
+      <Container>
+        <Stack>
+          <Text fontSize="xx-large">About us</Text>
+          <Text fontSize="medium">
+            Vision-Aid Academy is a nonprofit organization that specializes in
+            helping people with visual impairments through offering courses that
+            are taught with an emphasis on accessibility.
+          </Text>
+          <Image src="banner.png" />
+          <Image src="wheel.png" />
+        </Stack>
+      </Container>
+    </Root>
   );
 };
 
