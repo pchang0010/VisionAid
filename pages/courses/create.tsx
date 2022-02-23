@@ -41,9 +41,17 @@ const Students: NextPage = () => {
                 startDate.getMonth() + 1
               }-${startDate.getDate()}`,
             }}
-            onSubmit={(values, actions) => {
-              console.log("values", JSON.stringify(values));
-              console.log("actions", actions);
+            onSubmit={(values) => {
+              console.log("Sending these values to the BE:", values);
+              const response = fetch(
+                "http://ec2-3-87-215-83.compute-1.amazonaws.com:8080/course_offering/create",
+                {
+                  method: "POST",
+                  mode: "no-cors",
+                  body: JSON.stringify(values),
+                }
+              );
+              console.log(response);
             }}
           >
             {({ setFieldValue }) => (
