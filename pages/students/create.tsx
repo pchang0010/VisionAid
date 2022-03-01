@@ -22,8 +22,9 @@ import {
   Box,
   VStack,
   Spacer,
+  Heading,
 } from "@chakra-ui/react";
-import { Formik } from "formik";
+import { Field, Form, Formik } from "formik";
 
 const Root = styled.div`
   height: 100vh;
@@ -43,11 +44,48 @@ const Students: NextPage = () => {
   return (
     <Root>
       <Navbar />
+      {/* <Stack>
+        <Box>
+          <Heading size="l">Add student</Heading>
+        </Box>
+        <Spacer />
+        <Formik
+          initialValues={{}}
+          onSubmit={(values) => {
+            console.log(values);
+            const response = fetch(
+              "http://ec2-3-87-215-83.compute-1.amazonaws.com:8080/student/create",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(values),
+              }
+            );
+          }}
+        >
+          <Form>
+            <VStack>
+              <Box>
+                <Field name="name">
+                  {({ field }) => (
+                    <FormControl isRequired>
+                      <FormLabel htmlFor="name">Name</FormLabel>
+                      <Input id="name" {...field} />
+                    </FormControl>
+                  )}
+                </Field>
+              </Box>
+            </VStack>
+          </Form>
+        </Formik>
+      </Stack> */}
       <Container>
         <Stack>
-          <Text fontSize="large" as="b">
-            Add student
-          </Text>
+          <Box>
+            <Heading size="l">Add student</Heading>
+          </Box>
           <Spacer />
           <Formik
             initialValues={{}}

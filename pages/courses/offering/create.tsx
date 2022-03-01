@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
-import { Navbar } from "../../components/Navbar";
+import { Navbar } from "../../../components/Navbar";
 import type { NextPage } from "next";
 import {
   Container,
-  Text,
+  Heading,
   Stack,
   FormControl,
   FormLabel,
@@ -23,6 +23,12 @@ const Root = styled.div`
   height: 100vh;
 `;
 
+const DateSelectorWrapper = styled.div`
+  position: absolute;
+  top: 40px;
+  padding-left: 5px;
+`;
+
 const Students: NextPage = () => {
   const [startDate, setStartDate] = useState(new Date());
 
@@ -31,9 +37,9 @@ const Students: NextPage = () => {
       <Navbar />
       <Container>
         <Stack>
-          <Text fontSize="large" as="b">
-            Add a course
-          </Text>
+          <Box>
+            <Heading size="l">Add a course offering</Heading>
+          </Box>
           <Spacer />
           <Formik
             initialValues={{
@@ -42,16 +48,16 @@ const Students: NextPage = () => {
               }-${startDate.getDate()}`,
             }}
             onSubmit={(values) => {
-              console.log("Sending these values to the BE:", values);
               const response = fetch(
                 "http://ec2-3-87-215-83.compute-1.amazonaws.com:8080/course_offering/create",
                 {
                   method: "POST",
-                  mode: "no-cors",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
                   body: JSON.stringify(values),
                 }
               );
-              console.log(response);
             }}
           >
             {({ setFieldValue }) => (
@@ -73,7 +79,7 @@ const Students: NextPage = () => {
                       {({ field }) => (
                         <FormControl isRequired>
                           <FormLabel htmlFor="pm_user_id">
-                            Project Manager ID
+                            Program Manager ID
                           </FormLabel>
                           <Input id="pm_user_id" {...field} />
                         </FormControl>
@@ -122,20 +128,23 @@ const Students: NextPage = () => {
                   </Box>
 
                   <Box>
-                    <FormControl isRequired>
+                    <FormControl>
                       <FormLabel htmlFor="start_date">Start Date</FormLabel>
-                      <DatePicker
-                        selected={startDate}
-                        onChange={(date: Date) => {
-                          setStartDate(date);
-                          setFieldValue(
-                            "start_date",
-                            `${date.getFullYear()}-${
-                              date.getMonth() + 1
-                            }-${date.getDate()}`
-                          );
-                        }}
-                      />
+                      <Input />
+                      <DateSelectorWrapper>
+                        <DatePicker
+                          selected={startDate}
+                          onChange={(date: Date) => {
+                            setStartDate(date);
+                            setFieldValue(
+                              "start_date",
+                              `${date.getFullYear()}-${
+                                date.getMonth() + 1
+                              }-${date.getDate()}`
+                            );
+                          }}
+                        />
+                      </DateSelectorWrapper>
                     </FormControl>
                   </Box>
 
