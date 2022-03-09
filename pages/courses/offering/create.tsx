@@ -49,7 +49,7 @@ const Students: NextPage = () => {
             }}
             onSubmit={(values) => {
               const response = fetch(
-                "http://ec2-3-87-215-83.compute-1.amazonaws.com:8080/course_offering/create",
+                "http://ec2-52-90-191-246.compute-1.amazonaws.com:8080/course_offering/create",
                 {
                   method: "POST",
                   headers: {
